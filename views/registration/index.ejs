@@ -1,0 +1,60 @@
+<div class="form-wrapper-container">
+  <h2> Log In or Signup</h2>
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form id="signUpForm" action="auth/signUp" method="post">
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email for registration</span>        
+        <input name="username" type="text" placeholder="Username" maxlength="30" />
+        <span id="nameErr"></span>
+
+        <input name="email" type="text" placeholder="Email" maxlength="30" />
+        <span id="emailErr"></span>
+
+        <input name="password" type="password" placeholder="Password" maxlength="10" />
+        <span id="passErr"></span>
+        <button>Sign Up</button>
+      </form>
+    </div>
+
+    <div class="form-container sign-in-container">
+      <form id="logInForm" action="auth/logIn" method="post">
+        <h1>Sign in</h1>
+        <div class="social-container">
+          <a href="facebook.com/" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="mail.google.com/" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="twitter.com/" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your account</span>
+        <input type="text" name="email" placeholder="Email" />
+        <span id="signInemailErr"></span>
+
+        <input type="password" placeholder="Password" name="password" maxlength="10" />
+        <span id="signInpassErr"></span>
+        <a href="#">Forgot password?</a>
+        <button>Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>
+            To keep connected with us please login.
+          </p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Welcome to FindSpace!</h1>
+          <p>Enter your details to sign up</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
