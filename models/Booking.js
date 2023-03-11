@@ -1,19 +1,15 @@
 const mongoose = require('mongoose')
 
 const bookingSchema = new mongoose.Schema({
-    hostel:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:"Hostel"
-    },
-    user:{
+    customer:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"User"
     },
-    status:{
-        type:String,
-        default:'pending'
+    service:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"Service"
     },
     created_on:{
         type:Date,

@@ -1045,3 +1045,8 @@
     bottom: auto;
     margin-top: 14px;
 }
+
+.filepond--root {
+    height: 250px !important;
+    width: 250px !important;
+}

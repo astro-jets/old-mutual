@@ -20,6 +20,14 @@
                     <li>
                         <a href="#"><i class="fa fa-phone"></i>+265-123-123-123</a>
                     </li>
+                    <% if(user){ %>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user"></i>  
+                                <%=user.username%>
+                            </a>
+                        </li>
+                    <%}%>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -45,7 +53,7 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <h2>Old Mutual Limited</h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -77,7 +85,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop1">Login</a>
+                        <% if(user){ %>
+                            <a href='/logout' class="nav-link">Log Out</a>
+                        <% }else{ %>
+                            <a class="nav-link" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop1">Login</a>
+                        <% } %>
                     </li>
                 </ul>
             </div>
@@ -97,16 +109,17 @@
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <form action="account.html">
+                <!-- Login form -->
+                <form id="logInForm" action="/login">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="email1" class="form-control" />
+                        <input type="email" id="email1" name="email" class="form-control" />
                         <label class="form-label" for="email1">Email address</label>
                     </div>
 
                     <!-- password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="password1" class="form-control" />
+                        <input type="password" name="password" id="password1" class="form-control" />
                         <label class="form-label" for="password1">Password</label>
                     </div>
 
@@ -118,6 +131,7 @@
                     <a class="create" style="color: rgb(65, 60, 97)" data-mdb-toggle="modal"
                         data-mdb-target="#staticBackdrop2">Create an account</a>
                 </form>
+                <!-- Login form -->
             </div>
         </div>
     </div>
@@ -133,50 +147,41 @@
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-3">
-                <form>
+                <!-- Signup form -->
+                <form id="signUpForm">
                     <!-- Firstname input -->
                     <div class="form-outline mb-4">
-                        <input type="text" id="name2" class="form-control" />
-                        <label class="form-label" for="name2">Firstname</label>
-                    </div>
-
-                    <!-- Surname input -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="name2" class="form-control" />
-                        <label class="form-label" for="name2">Surname</label>
+                        <input type="text" id="name2" name="username" class="form-control" />
+                        <label class="form-label"  for="name2">Name</label>
                     </div>
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="email2" class="form-control" />
+                        <input type="email" id="email2" name="email" class="form-control" />
                         <label class="form-label" for="email2">Email address</label>
                     </div>
 
                     <!-- Phone number input -->
                     <div class="form-outline mb-4">
-                        <input type="tel" id="phone" class="form-control" />
+                        <input type="tel" id="phone" name="phone" class="form-control" />
                         <label class="form-label" for="name2">Phone number</label>
-                    </div>
-
-                    <!-- Dateinput -->
-                    <div class="form-outline mb-4">
-                        <input type="date" id="date" class="form-control" />
-                        <label class="form-label" for="date">Date Of Birth</label>
                     </div>
 
                     <!-- password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="password2" class="form-control" />
+                        <input type="password" id="password2" name="password" class="form-control" />
                         <label class="form-label" for="password2">Password</label>
                     </div>
 
                     <!-- Submit button -->
-                    <a class="btn btn-primary btn-block" style="margin-bottom: 0.5cm" data-mdb-toggle="modal"
-                        data-mdb-target="#myModal">Sign Up</a>
+                    <button type="submit" class="btn btn-primary btn-block" 
+                    style="margin-bottom: 0.5cm" data-mdb-toggle="modal"
+                        data-mdb-target="#myModal">Sign Up</button>
 
                     <a class="create" style="color: rgb(65, 60, 97)" data-mdb-toggle="modal"
                         data-mdb-target="#staticBackdrop1">Alredy have an account?</a>
                 </form>
+                <!-- Signup form -->
             </div>
         </div>
     </div>
@@ -188,10 +193,8 @@
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header justify-content-center"></div>
-            <div class="modal-body text-center">
-                <h4>Great!</h4>
-                <p>Your account has been created successfully.</p>
-                <a class="btn btn-success" href="index.html"><span>Start Exploring</span></a>
+            <div id="myModalContainer" class="modal-body text-center">
+                
             </div>
         </div>
     </div>

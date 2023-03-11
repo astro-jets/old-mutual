@@ -19,9 +19,7 @@ mongoose.connect(process.env.DATABASE_URL,{
 
 //Route Files
 const expressLayouts = require('express-ejs-layouts');
-const mainRouter = require('./routes/main');
-const serviceRouter = require('./routes/services');
-const authRouter = require('./routes/auth');
+const customerRouter = require('./routes/customer');
 const adminRouter = require('./routes/admin');
 
 // Additional files
@@ -39,9 +37,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 // Routes
-app.use("/",mainRouter);
-app.use("/services",serviceRouter);
-app.use("/auth",authRouter);
+app.use("/",customerRouter);
 app.use("/admin",adminRouter);
 
 app.listen(process.env.PORT || 3000)

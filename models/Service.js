@@ -8,7 +8,7 @@ const serviceSchema = new mongoose.Schema({
     },
     description:{
         type:String,
-        required:[true,'Please enter details']
+        required:[true,'Please enter service description']
     },
     thumbnail:{
         type:Buffer,

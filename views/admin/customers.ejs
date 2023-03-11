@@ -1,0 +1,41 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Customers</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Customers</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h6 class="mb-4">Registered Customers</h6>
+                        <table class="table table-bordered table table table-hover mb-0" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% customers.forEach(customer => { %>
+                                    <tr>
+                                        <td><%=customer.username %></td>
+                                        <td><%=customer.email %></td>
+                                        <td>+265 123 456 789</td>
+                                    </tr>                                    
+                               <% }); %>
+                            </tbody>
+                        </table>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

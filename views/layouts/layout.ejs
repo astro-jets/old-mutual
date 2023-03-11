@@ -73,54 +73,27 @@
           <div class="col-md-3 footer-item last-item">
             <h4>Contact Us</h4>
             <div class="contact-form">
-              <form id="contact footer-contact" action="" method="post">
+              <form action="/contacts" method="post">
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
-                      <input
-                        name="name"
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        placeholder="Full Name"
-                        required=""
-                      />
+                      <input name="title" type="text" class="form-control" id="name" placeholder="Title"/>
                     </fieldset>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <fieldset>
-                      <input
-                        name="email"
-                        type="text"
-                        class="form-control"
-                        id="email"
-                        pattern="[^ @]*@[^ @]*"
-                        placeholder="E-Mail Address"
-                        required=""
-                      />
+                      <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" />
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea
-                        name="message"
-                        rows="6"
-                        class="form-control"
-                        id="message"
-                        placeholder="Your Message"
-                        required=""
+                      <textarea name="message" rows="6" class="form-control" placeholder="Your Message"
                       ></textarea>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <button
-                        type="submit"
-                        id="form-submit"
-                        class="filled-button"
-                      >
-                        Send Message
-                      </button>
+                      <button type="submit" class="filled-button">Send Message</button>
                     </fieldset>
                   </div>
                 </div>
@@ -146,6 +119,7 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Additional Scripts -->
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/ui.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/owl.js"></script>

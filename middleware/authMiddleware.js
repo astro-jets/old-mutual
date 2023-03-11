@@ -9,7 +9,7 @@ const requireAuth = (req,res,next)=>{
         jwt.verify(token,process.env.TOKEN_SECRET,(err,decodedToken)=>{
             if(err){
                 // console.log(err.message)
-                res.redirect('auth/')
+                res.redirect('admin/login')
             }else{
                 // console.log(decodedToken)
                 next()
@@ -18,7 +18,7 @@ const requireAuth = (req,res,next)=>{
 
     }
     else{
-        res.redirect('/auth')
+        res.redirect('admin/login')
     }
 }
 
@@ -40,4 +40,29 @@ const currentUser = (req,res,next)=>{
     }else{res.locals.user = null;next();}
 }
 
-module.exports = {requireAuth,currentUser}
+const isAdmin = (req,res,next)=>{
+    const token = req.cookies.jwt;
+    // Check if token exists and is valid
+    if(token)
+    {
+        jwt.verify(token,process.env.TOKEN_SECRET,(err,decodedToken)=>{
+            if(err){
+                res.redirect('admin/login')
+            }else{
+                const user = res.locals.user
+
+                if(user.userType === 'admin'){next()}
+                else{
+                    res.cookie('jwt','',{httpOnly:true,maxAge:1})
+                    res.redirect('admin/login')
+                }
+            }
+        })
+
+    }
+    else{
+        res.redirect('admin/login')
+    }
+}
+
+module.exports = {requireAuth,currentUser,isAdmin}

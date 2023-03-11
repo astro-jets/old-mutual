@@ -1,0 +1,58 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Services</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Services</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Available Services</h5>
+                        <ul class="list-group">
+                            <% services.forEach(service => { %>
+                                <li class="list-group-item"><%=service.name%></li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Service</h5>
+                        <form class="row g-3" method="post" action="/admin/services">
+                            <div class="col-12">
+                                <label for="inputNanme4"  class="form-label">Service Name</label>
+                                <input type="text" class="form-control" name="name" id="inputNanme4" />
+                            </div>
+                            <div class="col-12 g-3">
+                                <label for="inputNanme4" class="form-label">Service Thumbnail</label>
+                                <input type="file" name="avatar" class="form-control filepond">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label" >Description</label>
+                                
+                                <textarea name="description" id="" cols="30" rows="10" class="form-control">
+                                </textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                                <button type="reset" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

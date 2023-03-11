@@ -1,17 +1,44 @@
-<!-- Sidebar Start -->
-<div class="sidebar pe-4 pb-3">
-    <nav class="navbar bg-light navbar-light">
-        <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary">chichiri Hostels</h3>
-        </a>
-        <div class="d-flex align-items-center ms-4 mb-4">
-        </div>
-        <div class="navbar-nav w-100">
-            <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="/admin/customers" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Customers</a>
-            <a href="/admin/hostels" class="nav-item nav-link"><i class="fa fa-gift me-2"></i>Hostels</a>
-            <a href="/admin/bookings" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Bookings</a>
-        </div>
-    </nav>
-</div>
-<!-- Sidebar End -->
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/admin">
+                <i class="bi bi-grid"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/notifications">
+                <i class="bi bi-bell"></i> <span>Notification</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/messages">
+                <i class="bi bi-envelope"></i> <span>Messages</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/customers">
+                <i class="bi bi-people"></i> <span>Customers</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/services">
+                <i class="bi bi-newspaper"></i> <span>Services</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/subscriptions">
+                <i class="bi bi-bell"></i> <span>Subscriptions</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/reports">
+                <i class="bi bi-file-bar-graph"></i> <span>Reports</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="login">
+                <i class="bi bi-box-arrow-right"></i> <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</aside>

@@ -19,7 +19,20 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true,'Please enter a password'],
         minlegnth:[8,'Password must not be less than 8 characters']
-    }
+    },
+    avatar: {
+        type: Buffer
+    },
+    avatarType: {
+        type: String
+    },
+    userType:{
+        type:String,
+        required:true
+    },
+    subscriptions:[{
+        type:String
+    }]
 })
 
 
@@ -42,5 +55,12 @@ userSchema.statics.login = async function(email,password){
     throw Error('Incorrect Email')
 }
 
-const User = mongoose.model('user',userSchema);
+userSchema.virtual('avatarPath').get(function(){
+  if(this.avatar != null && this.avatarType != null)
+  {
+    return `data:${this.avatarType};charset=utf-8;base64,${this.avatar.toString('base64')}`
+  }
+})
+
+const User = mongoose.model('User',userSchema);
 module.exports = User;
