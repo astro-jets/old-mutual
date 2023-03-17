@@ -21,7 +21,14 @@ const messageSchema = new mongoose.Schema({
     date:{
         type:Date,
         default:Date.now()
-    }
+    },
+    status:{
+        type:String,
+        default:'unread'
+    },
+    thread:[{
+        type:Object
+    }]
 })
 
 const message = mongoose.model('Message',messageSchema);

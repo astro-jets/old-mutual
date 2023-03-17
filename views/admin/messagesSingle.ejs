@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../../assets/css/messages.css">
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Messages</h1>
@@ -9,44 +10,80 @@
         </nav>
     </div>
     <section class="section">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div class="card">
-                <div class="card-body pt-3">
-                    <nav class="header-nav ms-auto">
-                        <ul class="messages">
-                            <li class="message-item">
-                                <a href="#show-form" data-bs-toggle="tab" data-bs-target="#show-form">
-                                    <img src="../../img/messages-1.jpg" alt="" class="rounded-circle" />
-                                    <div>
-                                        <h><%=data.name%></h3>
-                                        <p class="mt-1"><%=data.email%></p>
-                                        <hr class="dropdown-divider" />
-                                        <h4 class="mt-3 mb-3" ><%=data.title%></h4>
-                                        <p class="mt-3 mb-3 text-dark">
-                                            <%=data.message%>
-                                        </p>
-                                        <p class="col-xl-6"><%=data.date%></p>
+                <div class="card">
+                    <div class="card-body">                        
+                        <div class="chat-box scrollable" style="height: 475px">
+                            <!--chat Row -->
+                            <ul class="chat-list">
+                                <!--chat Row -->
+                                <li class="chat-item">
+                                    <div class="chat-img">
+                                        <img src="<%=data.avatar%>" alt="user" />
                                     </div>
-                                </a>
-                                <form class="row mt-1 g-3 needs-validation" action="/admin/message/:id/reply" method="post">
-                                    <div class="col-11 mx-5 pl-5">
-                                        <div class="input-group has-validation">
-                                            <textarea name="response" class="col-xl-12 rounded" rows="10"></textarea>
-                                            <div class="invalid-feedback">
-                                                Please enter your email.
-                                            </div>
-                                            <button type="submit" class=" col-xl-4 mt-2 btn btn-primary rounded">
-                                                <i class="bi bi-reply"></i>
-                                                Reply
-                                            </button>
+                                    <div class="chat-content">
+                                        <h6 class="font-medium"><%=data.name%></h6>
+                                        <small class="font-small"><%=data.email%></small>
+                                        <div class="box bg-light-info">
+                                            <%=data.message%>
                                         </div>
                                     </div>
-                                </form>
-                            </li>
-                        </ul>
-                        
-                        <!-- Messages Section -->
-                    </nav>
+                                    <div class="chat-time"><%=data.date%></div>
+                                </li>
+                                <% if(data.thread.length >=1 ){data.thread.forEach(t=>{%>
+                                    <% if(t.from=='admin' ){%>
+                                        <!--chat Row -->
+                                        <li class="odd chat-item col-xl-12">
+                                            <div class="chat-content">
+                                                <div class="box bg-light-inverse wrap">
+                                                    <%=t.response%>
+                                                </div>
+                                                <br />
+                                            </div>
+                                            <div class="chat-time">
+                                                <%=t.date%>
+                                            </div>
+                                        </li>
+                                    <% }if(t.from=='user' ){%>
+                                        <!--chat Row -->
+                                        <li class="chat-item">
+                                            <div class="chat-img">
+                                                <img src="../img/admin.png" alt="user" />
+                                            </div>
+                                            <div class="chat-content">
+                                                <h6 class="font-medium">Customer Care</h6>
+                                                <div class="box bg-light-info">
+                                                    <%=t.response%>
+                                                </div>
+                                            </div>
+                                            <div class="chat-time">
+                                                <%=t.date%>
+                                            </div>
+                                        </li>
+                                        <!--chat Row -->
+                                    <% } %>
+                                <%})} %>
+                            </ul>
+                        </div>
+                    </div>
+                    <form class="row mt-1 g-3 needs-validation" action="/admin/messages/<%=data.id %>" method="post">
+                        <div class="card-body border-top">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="input-field mt-0 mb-0">
+                                        <textarea id="textarea1" name="response" placeholder="Type and enter"
+                                            class="form-control border-0"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <button type="submit" class="btn-circle btn-lg btn-cyan float-end text-white">
+                                        <i class="bi bi-send fs-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

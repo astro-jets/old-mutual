@@ -13,8 +13,30 @@ router.get("/customers",isAdmin, controller.customers)
 //Messages
 router.get("/messages",isAdmin, controller.messages)
 
-//Messages
-router.get("/messages/:id",isAdmin, controller.single)
+//Messages Single
+router.get("/messages/:id",isAdmin, controller.messageSingle)
+
+//Messages Reply
+router.post("/messages/:id",isAdmin, controller.messageReply)
+
+router.get("/geo",(req,res)=>{
+async function getCurrentLocation() {
+     const fetch = await import('node-fetch');
+  const res = await fetch('https://ipapi.co/json/');
+  const data = await res.json();
+  const latitude = data.latitude;
+  const longitude = data.longitude;
+  return { latitude, longitude };
+}
+
+getCurrentLocation().then(coords => {
+  console.log('Latitude:', coords.latitude);
+  console.log('Longitude:', coords.longitude);
+}).catch(err => {
+  console.error('Error getting location:', err);
+});
+
+})
 
 //customers
 router.get("/notifications",isAdmin, controller.notifications)

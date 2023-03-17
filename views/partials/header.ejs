@@ -1,3 +1,12 @@
+
+<style>
+    
+    .filepond--root {
+        height: 200px !important;
+        width: 200px !important;
+    }
+</style>
+
 <!-- ***** Preloader Start ***** -->
 <div id="preloader">
     <div class="jumper">
@@ -22,7 +31,7 @@
                     </li>
                     <% if(user){ %>
                         <li>
-                            <a href="#">
+                            <a href="/profile">
                                 <i class="fa fa-user"></i>  
                                 <%=user.username%>
                             </a>
@@ -148,7 +157,7 @@
             </div>
             <div class="modal-body p-3">
                 <!-- Signup form -->
-                <form id="signUpForm">
+                <form id="signUpForm" action="/signUp" method="POST">
                     <!-- Firstname input -->
                     <div class="form-outline mb-4">
                         <input type="text" id="name2" name="username" class="form-control" />
@@ -165,6 +174,12 @@
                     <div class="form-outline mb-4">
                         <input type="tel" id="phone" name="phone" class="form-control" />
                         <label class="form-label" for="name2">Phone number</label>
+                    </div>
+
+                    <!-- Phone number input -->
+                    <div class="form-outline mb-4">
+                        <p class="form-label">Upload your profile</p>
+                        <input type="file" id="avatar" name="avatar" class="filepond" />
                     </div>
 
                     <!-- password input -->

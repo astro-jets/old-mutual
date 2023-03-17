@@ -70,7 +70,6 @@ module.exports.services = async (req,res)=>{
     }
 }
 
-
 //Services Page
 module.exports.servicesPost = async (req,res)=>{
     const serviceDetails = {
@@ -105,39 +104,80 @@ module.exports.customers = async (req,res)=>{
 module.exports.messages = async (req,res)=>{
     try{
         const messages = await Message.find();
-        const data = []
+        const unread = []
+        const all = []
         for (let i = 0; i < messages.length; i++) {
             const message = messages[i];
             const user = await User.findById(message.user)
-            data.push({
+            all.push({
                 id:message._id,
                 name:user.username,
                 avatar:user.avatarPath,
                 title:message.title,
                 date: moment(message.date).calendar()
             })
+            if(message.status == 'unread'){
+                unread.push({
+                id:message._id,
+                name:user.username,
+                avatar:user.avatarPath,
+                title:message.title,
+                date: moment(message.date).calendar()
+            })
+            }
         }
 
         res.render('admin/messages',{
-            messages:data,
+            all:all,
+            unread:unread,
             layout:'layouts/adminLayout'
         })
     }
     catch(err){}
 }
 
+//Messages response
+module.exports.messageReply = async (req,res)=>{
+    try{
+        const thread = {
+            time:Date.now(),
+            response: req.body.response,
+            from:'admin',
+            status:'unread'
+        }
+        const message = await Message.findById(req.params.id)
+        message.thread.push(thread)
+        await message.save()
+        res.redirect(`/admin/messages/${req.params.id}`)
+    }
+    catch(err){res.send(err.message)}
+}
+
 //Messages single Page
-module.exports.single = async (req,res)=>{
+module.exports.messageSingle = async (req,res)=>{
     try{
         const message = await Message.findById(req.params.id)
+        message.status = 'read'
+        await message.save()
         const user = await User.findById(message.user)
+        const thread = []        
+        for (let i = 0; i < message.thread.length; i++) {
+            const t = message.thread[i];
+            thread.push({
+                response:t.response,
+                from:t.from,
+                date:moment(t.time).calendar(),
+            })            
+        }
         const data ={
+            id:req.params.id,
             avatar:user.avatarPath,
             name:user.username,
             email:user.email,
             title:message.title,
             message:message.message,
-            date: moment(message.date).calendar()
+            date: moment(message.date).calendar(),
+            thread:thread
         }
         res.render('admin/messagesSingle',{
             data:data,

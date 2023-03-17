@@ -1,5 +1,4 @@
-<div class="page-heading1 header-text"></div>
-
+<link rel="stylesheet" href="../../assets/css/messages.css">
 <section class="py-5 my-5">
     <div class="container">
         <h1 class="mb-5"></h1>
@@ -10,7 +9,12 @@
                     <h4 class="text-center"><%=user.username%></h4>
                 </div>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
+                    <a class="nav-link active" id="messages-tab" data-toggle="pill" href="#messages" role="tab" aria-controls="service"
+                        aria-selected="false">
+                        <i class="fa fa-envelope text-center mr-1"></i>
+                        messages
+                    </a>
+                    <a class="nav-link" id="account-tab" data-toggle="pill" href="#account" role="tab"
                         aria-controls="account" aria-selected="true">
                         <i class="fa fa-home text-center mr-1"></i>
                         Account
@@ -26,10 +30,10 @@
                         Services
                     </a>
                 </div>
-            </div>
-            <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+            </div>            
+            <div class="tab-content col-10 p-md-5" id="v-pills-tabContent">
                 <!-- Account Details -->
-                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
                     <h3 class="mb-4">Personal Details</h3>
                     <div class="col-md-12">
                         <div class="col-md-12">
@@ -87,6 +91,85 @@
                     </div>
                 </div>
                 <!-- Password Details -->
+
+                <!-- Messages -->
+                <div class="tab-pane fade show active" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                    <h3 class="mb-4">Messages</h3>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Your Messages</h4>
+                                    <div class="chat-box scrollable" style="height: 475px">
+                                        <!--chat Row -->
+                                        <ul id="messagesContainer"class="chat-list">
+                                            <!--chat Row -->
+                                            <li class="odd chat-item col-xl-12">
+                                                <div class="chat-content">
+                                                    <div class="box bg-light-inverse wrap">
+                                                        <%=data.message%>
+                                                    </div>
+                                                    <br />
+                                                </div>
+                                                <div class="chat-time"><%=data.date%></div>
+                                            </li>
+                                            <% if(data.thread){ data.thread.forEach(t=>{ %>
+                                                <% if(t.from == 'user'){%>
+                                                    <!--chat Row -->
+                                                    <li class="odd chat-item col-xl-12">
+                                                        <div class="chat-content">
+                                                            <div class="box bg-light-inverse wrap">
+                                                                <%=t.response%>
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                        <div class="chat-time">
+                                                            <%=t.date%>
+                                                        </div>
+                                                    </li>
+                                                <% }if(t.from=='admin'){%>
+                                                    <!--chat Row -->
+                                                    <li class="chat-item">
+                                                        <div class="chat-img">
+                                                            <img src="../img/admin.png" alt="user" />
+                                                        </div>
+                                                        <div class="chat-content">
+                                                            <h6 class="font-medium">Customer Care</h6>
+                                                            <div class="box bg-light-info">
+                                                                <%=t.response%>
+                                                            </div>
+                                                        </div>
+                                                        <div class="chat-time">
+                                                            <%=t.date%>
+                                                        </div>
+                                                    </li>
+                                                    <!--chat Row -->
+                                                <% } %>
+                                            <% })} %>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <form id="profile-form" class="row mt-1 g-3 needs-validation">
+                                    <div class="card-body border-top">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <div class="input-field mt-0 mb-0">
+                                                    <input type="hidden" name="id" value="<%=data.id %>">
+                                                    <textarea id="textarea1" name="response" placeholder="Type and enter"
+                                                        class="form-control border-0"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="submit" class="btn-circle btn-lg btn-cyan float-end text-white">
+                                                    <i class="bi bi-send fs-4"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+                <!-- Messages -->
 
                 <!-- Subscribed Services -->
                 <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">

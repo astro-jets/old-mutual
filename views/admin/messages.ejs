@@ -29,7 +29,7 @@
                             <h5 class="card-title">All Messages</h5>
                             <nav class="header-nav ms-auto">
                                 <ul class="messages">
-                                    <% messages.forEach(msg => { %>
+                                    <% all.forEach(msg => { %>
                                         <li>
                                             <hr class="dropdown-divider" />
                                         </li>
@@ -38,7 +38,7 @@
                                                 <img src="../img/messages-1.jpg" alt="" class="rounded-circle" />
                                                 <div>
                                                     <h4><%=msg.name%></h4>
-                                                    <p><%=msg.title %>...</p>
+                                                    <p><%=msg.title %> ...</p>
                                                     <p><%=msg.date %></p>
                                                 </div>
                                             </a>
@@ -53,57 +53,27 @@
                             <h5 class="card-title">Unread Messages</h5>
                             <nav class="header-nav ms-auto">
                                 <ul class="messages">
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="#">
-                                            <img src="../img/messages-1.jpg" alt="" class="rounded-circle" />
-                                            <div>
-                                                <h4>Janet</h4>
-                                                <p>
-                                                    Velit asperiores et ducimus soluta repudiandae labore
-                                                    officia est ut...
-                                                </p>
-                                                <p>4 hrs. ago</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="#">
-                                            <img src="../img/messages-2.jpg" alt="" class="rounded-circle" />
-                                            <div>
-                                                <h4>Mercy</h4>
-                                                <p>
-                                                    Velit asperiores et ducimus soluta repudiandae labore
-                                                    officia est ut...
-                                                </p>
-                                                <p>6 hrs. ago</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="#">
-                                            <img src="../img/messages-3.jpg" alt="" class="rounded-circle" />
-                                            <div>
-                                                <h4>Bryan</h4>
-                                                <p>
-                                                    Velit asperiores et ducimus soluta repudiandae labore
-                                                    officia est ut...
-                                                </p>
-                                                <p>8 hrs. ago</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
+                                    <% unread.forEach(msg=> { %>
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                        <li class="message-item">
+                                            <a href="/admin/messages/<%=msg.id %>">
+                                                <img src="<%=msg.avatar%>" alt="" class="rounded-circle" />
+                                                <div>
+                                                    <h4>
+                                                        <%=msg.name%>
+                                                    </h4>
+                                                    <p>
+                                                        <%=msg.title %> ...
+                                                    </p>
+                                                    <p>
+                                                        <%=msg.date %>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    <% }); %>
                                 </ul>
                                 <!-- Messages Section -->
                             </nav>

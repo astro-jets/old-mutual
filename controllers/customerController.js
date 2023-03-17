@@ -1,3 +1,5 @@
+const imageMimeTypes = ['image/jpeg','image/png','image/ico']
+const moment = require('moment');
 const User = require('../models/User')  
 const Service = require('../models/Service')  
 const Book = require('../models/Booking')  
@@ -59,12 +61,29 @@ module.exports.services= async (req,res)=>{
 module.exports.profile= async (req,res)=>{ 
     try{
         const user = res.locals.user
+        const message = await Message.findOne({user:user._id})
+            
+        const data ={
+            id:message._id,
+            message:message.message,
+            date: moment(message.date).calendar(),
+            thread:[]
+        }   
+        for (let i = 0; i < message.thread.length; i++) {
+            const t = message.thread[i];
+            data.thread.push({
+                response:t.response,
+                from:t.from,
+                date:moment(t.time).calendar(),
+            })            
+        }
         
         res.render('profile/index',{
-            user: user
+            user: user,
+            data:data
         })
     }
-    catch(err){res.send(err)}
+    catch(err){res.send(err.message)}
 }
 
 // Book a service
@@ -102,20 +121,62 @@ module.exports.contacts = async (req,res)=>{
         res.send(err.message)
     }
 }
+//Messages response
+module.exports.messageReply = async (req,res)=>{
+    try{
+        const thread = {
+            time:Date.now(),
+            response: req.body.response,
+            from:'user',
+            status:'unread'
+        }
+        const message = await Message.findById(req.params.id)
+        message.thread.push(thread)
+        await message.save()
+
+        const data ={
+            id:message._id,
+            message:message.message,
+            date: moment(message.date).calendar(),
+            thread:[]
+        }   
+        for (let i = 0; i < message.thread.length; i++) {
+            const t = message.thread[i];
+            data.thread.push({
+                response:t.response,
+                from:t.from,
+                date:moment(t.time).calendar(),
+            })            
+        }
+        
+        res.status(200).json({status:true,message:data});
+    }
+    catch(err){
+        res.send(err.message)
+    }
+}
 
 //Signup Route
 module.exports.signUp = async (req,res)=>{
-    const{username,email,password} = req.body;
-    const userType = 'customer'
+    
+    const userDetails = {
+        username:req.body.username,
+        email:req.body.email,
+        password:req.body.password,
+        userType:'customer'
+    }
+    saveAvatar(userDetails,req.body.avatar)
+
     try{
-        const user = await User.create({username,email,password,userType})
+        const user = await User.create(userDetails)
         const token = createToken(user._id);
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000})
-        res.status(201).json({user})
+        res.redirect('/services')
     }
     catch(err)
     {
         const errors = handleErrors(err)
+        console.log(errors)
         res.status(201).json({errors})
     }
 }
@@ -145,5 +206,18 @@ module.exports.logOut = async (req,res)=>{
     {
         const errors = handleErrors(err)
         res.json({errors})
+    }
+}
+
+
+function saveAvatar(userDetails, encodedAvatar)
+{
+    if(encodedAvatar == null){return}
+
+    const avatar = JSON.parse(encodedAvatar)
+    if(avatar != null && imageMimeTypes.includes(avatar.type))
+    {
+        userDetails.avatar = new Buffer.from(avatar.data, 'base64')
+        userDetails.avatarType = avatar.type
     }
 }

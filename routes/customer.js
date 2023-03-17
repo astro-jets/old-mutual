@@ -28,6 +28,8 @@ router.get("/contacts",async (req,res)=>{res.render('contacts/index')})
 //Contacts
 router.post("/contacts",controller.contacts)
 
+router.post("/contacts/response/:id",controller.messageReply)
+
 //sign up customer
 router.post("/signup",controller.signUp)
 
