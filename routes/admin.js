@@ -38,8 +38,11 @@ getCurrentLocation().then(coords => {
 
 })
 
-//customers
+//Show all notifications
 router.get("/notifications",isAdmin, controller.notifications)
+
+//Update
+router.get("/updateNotifications",isAdmin, controller.updateNotifications)
 
 //subscriptions
 router.get("/subscriptions",isAdmin, controller.subscriptions)

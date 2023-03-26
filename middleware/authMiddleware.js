@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
+const Message = require('../models/Message')
+const moment = require('moment')
 
 const requireAuth = (req,res,next)=>{
     const token = req.cookies.jwt;
@@ -45,13 +47,16 @@ const isAdmin = (req,res,next)=>{
     // Check if token exists and is valid
     if(token)
     {
-        jwt.verify(token,process.env.TOKEN_SECRET,(err,decodedToken)=>{
+        jwt.verify(token,process.env.TOKEN_SECRET,async (err,decodedToken)=>{
             if(err){
                 res.redirect('admin/login')
             }else{
                 const user = res.locals.user
-
-                if(user.userType === 'admin'){next()}
+                if(user.userType === 'admin')
+                {
+                    res.locals.messages = await makeNotifictaions();
+                    next()
+                }
                 else{
                     res.cookie('jwt','',{httpOnly:true,maxAge:1})
                     res.redirect('admin/login')
@@ -65,4 +70,23 @@ const isAdmin = (req,res,next)=>{
     }
 }
 
+async function makeNotifictaions(){
+    const arr = []
+    const messages = await Message.find()
+    for (let i = 0; i < messages.length; i++) {
+        const message = messages[i];
+        const lastMessage = message.thread[message.thread.length - 1];
+        const user = await User.findById(message.user)
+        if(lastMessage.status === "unread" && lastMessage.from === "user")
+        {
+            arr.push({
+                id:message._id,
+                msg:lastMessage.message,
+                username:user.username,
+                timestamp:moment(lastMessage.date).calendar()
+            })
+        }
+    }
+    return(arr);
+}
 module.exports = {requireAuth,currentUser,isAdmin}

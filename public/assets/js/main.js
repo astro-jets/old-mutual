@@ -4,7 +4,7 @@ jQuery( document ).ready(function( $ ) {
     const logInForm = document.querySelector('#logInForm')
     const profileForm = document.querySelector('#profile-form')
     const myModal = document.querySelector('#myModalContainer')
-
+    
     // if(signUpForm)
     // {
     //     signUpForm.addEventListener('submit', async (e)=>{
@@ -157,4 +157,4 @@ jQuery( document ).ready(function( $ ) {
             }
         });
     }
-})
+});

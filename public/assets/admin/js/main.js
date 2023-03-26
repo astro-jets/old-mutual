@@ -311,3 +311,99 @@
   }
 
 })();
+
+window.onload = async function(){
+  const myHeader = document.querySelector('#header')    
+  if (myHeader) {
+    const unreadMessages = document.querySelector('#unreadMessages')    
+    const unreadMessagesLink = document.querySelector('#unreadMessagesLink')    
+    const messagesNotification = document.querySelector('#messagesNotification') 
+    
+    
+    const unreadNotifications = document.querySelector('#unreadNotifications')    
+    const unreadNotificationsLink = document.querySelector('#unreadNotificationsLink')    
+    const notifications = document.querySelector('#notifications')
+
+  if (myHeader) {    
+      try {
+          const res = await fetch(`/admin/updateNotifications/`, {
+              method: 'GET',
+              headers: { 'Content-Type': 'application/json' }
+          }) 
+          const data = await res.json() 
+          console.log(data)
+          if(data) 
+          {
+            if(data.data.length >= 1)
+            {
+              unreadMessages.textContent = data.unread;
+              unreadMessagesLink.innerHTML = `
+                  You have ${data.unread} new message(s)
+                  <a href="/admin/messages">
+                  <span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              `
+              messagesNotification.innerHTML=''
+              for (let i = 0; i < data.data.length; i++) {
+                const msg = data.data[i];
+                messagesNotification.innerHTML+=`
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li class="message-item">
+                            <a href="/admin/messages/${msg.id}">
+                                <img src="${msg.avatar}" alt="Profile" class="rounded-circle"/>
+                                <div>
+                                    <h4>${msg.username}</h4>
+                                    <p>
+                                        ${msg.msg} ...
+                                    </p>
+                                    <p>${msg.timestamp}</p>
+                                </div>
+                            </a>
+                        </li>
+                `              
+              }
+              
+            }
+            else{
+              unreadMessages.textContent = 0;
+              unreadMessagesLink.innerHTML = "<p>You have no new messages</p>";
+            }
+            if(data.ns.length >= 1){
+              unreadNotifications.textContent = data.ns.length;
+              unreadNotificationsLink.innerHTML = `
+                  You have ${data.ns.length} new message(s)
+                  <a href="/admin/messages">
+                  <span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              `
+              
+              notifications.innerHTML=''
+              for (let i = 0; i < data.ns.length; i++) {
+                const msg = data.ns[i];
+                notifications.innerHTML+=`
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <a href="#" class="notification-item">
+                        <i class="bi bi-exclamation-circle text-primary"></i>
+                        <div>
+                            <h4 class="text-dark">New subscription</h4>
+                            <p>${msg.service} service.</p>
+                            <p>${msg.timestamp}</p>
+                        </div>
+                    </a>
+                `              
+              }
+            }else{
+              unreadNotifications.textContent=0
+              unreadNotificationsLink.innerHTML = `
+                  You have no new notifications.
+              `
+            }
+          }
+      }     
+      catch (error) {
+          console.log("Err => ",error)
+      }
+  }
+}}

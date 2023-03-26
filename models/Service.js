@@ -10,11 +10,14 @@ const serviceSchema = new mongoose.Schema({
         type:String,
         required:[true,'Please enter service description']
     },
+    cost:{
+        type:String,
+        required:true
+    },
     thumbnail:{
         type:Buffer,
         required:true
     },
-
     thumbnailType:{
         type:String,
         required:true

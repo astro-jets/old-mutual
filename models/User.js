@@ -30,8 +30,13 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    created_on:{
+        type:Date,
+        required:true,
+        default:Date.now
+    },
     subscriptions:[{
-        type:String
+        type:Object
     }]
 })
 

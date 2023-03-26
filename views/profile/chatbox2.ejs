@@ -1,0 +1,132 @@
+<div class="pagetitle">
+    <h1>Messages</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Messages</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body pt-3">
+                <ul class="nav nav-tabs nav-tabs-bordered">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#important-messages">
+                            Important
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#all-messages">
+                            All Messages
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-2">
+                    <div class="tab-pane fade show all-messages" id="all-messages">
+                        <h5 class="card-title">All Messages</h5>
+                        <nav class="header-nav ms-auto">
+                            <!-- Single Message -->
+                            <ul class="messages">
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li class="message-item">
+                                        <a class="nav-link" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+                                            <img src="../img/admin.png" alt="" class="rounded-circle" />
+                                            <div>
+                                                <h4>Customer care</h4>
+                                                <p>
+                                                    Lorem ipsum dolor sit ...
+                                                </p>
+                                                <p>
+                                                    12 february, 2022
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                            </ul>
+                            <!-- Single Message -->
+
+                            <!-- Single Message -->
+                            <ul class="messages">
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li class="message-item">
+                                    <a href="#">
+                                        <img src="../img/admin.png" alt="" class="rounded-circle" />
+                                        <div>
+                                            <h4>Customer care</h4>
+                                            <p>
+                                                Lorem ipsum dolor sit ...
+                                            </p>
+                                            <p>
+                                                12 february, 2022
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- Single Message -->
+
+                            <!-- Single Message -->
+                            <ul class="messages">
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li class="message-item">
+                                    <a href="#">
+                                        <img src="../img/admin.png" alt="" class="rounded-circle" />
+                                        <div>
+                                            <h4>Customer care</h4>
+                                            <p>
+                                                Lorem ipsum dolor sit ...
+                                            </p>
+                                            <p>
+                                                12 february, 2022
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- Single Message -->
+
+                            
+                        </nav>
+                    </div>
+                    <div class="tab-pane fade show active important-messages" id="important-messages">
+                        <h5 class="card-title">Unread Messages</h5>
+                        <nav class="header-nav ms-auto">
+                            <ul class="messages">
+                                <% unread.forEach(msg=> { %>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li class="message-item">
+                                        <a href="/admin/messages/<%=msg.id %>">
+                                            <img src="<%=msg.avatar%>" alt="" class="rounded-circle" />
+                                            <div>
+                                                <h4>
+                                                    <%=msg.name%>
+                                                </h4>
+                                                <p>
+                                                    <%=msg.title %> ...
+                                                </p>
+                                                <p>
+                                                    <%=msg.date %>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                            <!-- Messages Section -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

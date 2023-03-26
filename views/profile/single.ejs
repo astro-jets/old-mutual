@@ -5,13 +5,16 @@
             <div class="profile-tab-nav border-right col-3">
                 <div class="p-4">
                     <div class="img-circle text-center mb-3">
-                        <img src="<%=user.avatarPath %>" alt="" style="height: 150px; width: 150px; object-fit: cover;" class="rounded-circle" />
+                        <img src="<%=user.avatarPath %>" alt="" style="height: 150px; width: 150px; object-fit: cover;"
+                            class="rounded-circle" />
                     </div>
-                    <h4 class="text-center"><%=user.username%></h4>
+                    <h4 class="text-center">
+                        <%=user.username%>
+                    </h4>
                 </div>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="messages-tab" data-toggle="pill" href="#messages" role="tab" aria-controls="service"
-                        aria-selected="false">
+                    <a class="nav-link active" id="messages-tab" data-toggle="pill" href="#messages" role="tab"
+                        aria-controls="service" aria-selected="false">
                         <i class="fa fa-envelope text-center mr-1"></i>
                         messages
                     </a>
@@ -31,7 +34,7 @@
                         Services
                     </a>
                 </div>
-            </div>            
+            </div>
             <div class="tab-content col-9 p-md-5" id="v-pills-tabContent">
                 <!-- Account Details -->
                 <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
@@ -93,48 +96,34 @@
                 </div>
                 <!-- Password Details -->
 
+                <!-- Messages -->
+                <div class="tab-pane fade show active" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                    <%-include('chatbox2') %>
+                </div>
+                <!-- Messages -->
+
                 <!-- Subscribed Services -->
                 <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">
                     <h3 class="mb-4">Subscribed services</h3>
-                    <div class="row">                    
-                        <div class="mt-4 col-12">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Service</th>
-                                            <th scope="col">Cost</th>
-                                            <th scope="col">Subscription Date</th>
-                                            <th scope="col">&nbsp;</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="customtable">
-                                        <% user.subscriptions.forEach(sub=> {%>
-                                        <tr>
-                                            <td><%=sub.service%></td>
-                                            <td>MK <%=sub.cost%>/pm</td>
-                                            <td>12 January 2022</td>
-                                            <td>
-                                                <button class="btn btn-danger py-2">
-                                                    <i class="fa fa-trash"></i>
-                                                    Unsubscribe
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <%}); %>
-                                    </tbody>
-                                </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <% user.subscriptions.forEach(sub=> {%>
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="app-check">
+                                            <%=sub%>
+                                        </label>
+                                    </div>
+                                    <%}); %>
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <button class="btn btn-primary">Subscribe</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </div>
                 </div>
                 <!-- Subscribed Services -->
-
-                <!-- Messages -->
-                <div class="tab-pane fade show active" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-                    <%-include('chatbox') %>
-                </div>
-                <!-- Messages -->
             </div>
         </div>
     </div>

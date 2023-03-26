@@ -1,0 +1,70 @@
+<div class="col-12">
+    <h1>Messages</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Messages</li>
+        </ol>
+    </nav>
+    </div>
+    <div >
+        <div class="card-body">
+            <div class="chat-box scrollable" style="height: 350px">
+                <!--chat Row -->
+                <ul id="messagesContainer" class="chat-list">
+                    <% if(data.thread){ data.thread.forEach(t=>{ %>
+                        <% if(t.from=='user' ){%>
+                            <!--chat Row -->
+                            <li class="odd chat-item col-xl-12">
+                                <div class="chat-content">
+                                    <div class="box bg-light-inverse wrap">
+                                        <%=t.response%>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="chat-time">
+                                    <%=t.date%>
+                                </div>
+                            </li>
+                        <% }if(t.from=='admin' ){%>
+                            <!--chat Row -->
+                            <li class="chat-item">
+                                <div class="chat-img">
+                                    <img src="../img/admin.png" alt="user" />
+                                </div>
+                                <div class="chat-content">
+                                    <h6 class="font-medium">Customer Care</h6>
+                                    <div class="box bg-light-info">
+                                        <%=t.response%>
+                                    </div>
+                                </div>
+                                <div class="chat-time">
+                                    <%=t.date%>
+                                </div>
+                            </li>
+                            <!--chat Row -->
+                        <% } %>
+                    <% })} %>
+                </ul>
+            </div>
+        </div>
+        <form id="profile-form" class="row mt-1 g-3 needs-validation">
+            <div class="card-body border-top">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="input-field mt-0 mb-0">
+                            <input type="hidden" name="id" value="<%=data.id %>">
+                            <textarea id="textarea1" name="response" placeholder="Type and enter"
+                                class="form-control border-0"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn-circle btn-lg btn-cyan float-end text-white">
+                            <i class="fa fa-send fs-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

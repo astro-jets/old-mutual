@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    Unsettled Loans <span>| This month</span>
+                                    Total Subscriptions <span>| This month</span>
                                 </h5>
                                 <div class="d-flex align-items-center">
                                     <div
@@ -35,7 +35,7 @@
                                         <i class="bi bi-bar-chart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>23</h6>
+                                        <h6><%=data.subscriptions%></h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span>
                                         <span class="text-muted small pt-2 ps-1">decrease</span>
                                     </div>
@@ -59,15 +59,15 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    Total Invested <span>| This Month</span>
+                                    Total Profit <span>| This Month</span>
                                 </h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-currency-pound"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>MWK113,244</h6>
+                                        <h6>£ <%=data.finances%> | MWK <%=parseInt(data.finances) * 1000%></h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
                                     </div>
@@ -91,15 +91,15 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    Money Available <span>| This Month</span>
+                                    Created Services <span>| All Time</span>
                                 </h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-newspaper"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>MWK100,264</h6>
+                                        <h6><%=data.services%></h6>
                                         <span class="text-success small pt-1 fw-bold">41%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
                                     </div>
@@ -123,7 +123,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    Customers <span>| This Year</span>
+                                    Registrations <span>| This Month</span>
                                 </h5>
                                 <div class="d-flex align-items-center">
                                     <div
@@ -131,7 +131,7 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
+                                        <h6><%=data.registrations%></h6>
                                         <span class="text-danger small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">decrease</span>
                                     </div>
@@ -155,54 +155,26 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    Recent Loans <span>| Today</span>
+                                    Customers <span>| All Time</span>
                                 </h5>
                                 <table class="table table-borderless datatable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Customers</th>
-                                            <th scope="col">Amount</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row"><a href="#">1</a></th>
-                                            <td>Brandon Jacob</td>
-                                            <td>MWK10,000</td>
-                                            <td>
-                                                <span class="badge bg-success">Approved</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">2</a></th>
-                                            <td>Bridie Kessler</td>
-                                            <td>MWK10,000</td>
-                                            <td><span class="badge bg-warning">Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">3</a></th>
-                                            <td>Ashleigh Langosh</td>
-                                            <td>MWK10,000</td>
-                                            <td>
-                                                <span class="badge bg-success">Approved</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">4</a></th>
-                                            <td>Angus Grady</td>
-                                            <td>MWK10,000</td>
-                                            <td><span class="badge bg-danger">Rejected</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">5</a></th>
-                                            <td>Raheem Lehner</td>
-                                            <td>MWK10,000</td>
-                                            <td>
-                                                <span class="badge bg-success">Approved</span>
-                                            </td>
-                                        </tr>
+                                        <% data.customers.forEach(c => {%>
+                                            <tr>
+                                                <td><%=c.username%></td>
+                                                <td><%=c.email%></td>
+                                                <td>
+                                                    <span class="badge bg-success">Active</span>
+                                                </td>
+                                            </tr>                                            
+                                        <%}); %>
                                     </tbody>
                                 </table>
                             </div>

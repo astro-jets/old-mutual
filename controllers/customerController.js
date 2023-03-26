@@ -65,14 +65,12 @@ module.exports.profile= async (req,res)=>{
             
         const data ={
             id:message._id,
-            message:message.message,
-            date: moment(message.date).calendar(),
             thread:[]
-        }   
+        } 
         for (let i = 0; i < message.thread.length; i++) {
             const t = message.thread[i];
             data.thread.push({
-                response:t.response,
+                response:t.message,
                 from:t.from,
                 date:moment(t.time).calendar(),
             })            
@@ -80,7 +78,8 @@ module.exports.profile= async (req,res)=>{
         
         res.render('profile/index',{
             user: user,
-            data:data
+            data:data,
+            layout:'layouts/noheader'
         })
     }
     catch(err){res.send(err.message)}
@@ -96,9 +95,11 @@ module.exports.bookService= async (req,res)=>{
     try{
         const user = await User.findById(res.locals.user._id)
         const service = await Service.findById(bookingDetails.service);
+        bookingDetails.cost = service.cost;
+        
         if(user){
             const booking = await Book.create(bookingDetails);
-            user.subscriptions.push(service.name);
+            user.subscriptions.push({service:service.name,cost:service.cost});
             await user.save()
         }
         res.redirect('/profile')
@@ -111,9 +112,13 @@ module.exports.bookService= async (req,res)=>{
 module.exports.contacts = async (req,res)=>{
     try{
         const message = {
-            title:req.body.title,
             user:res.locals.user._id,
-            message:req.body.message
+            thread:{
+                from:"user",
+                message:req.body.message,
+                status:"unread",
+                timestamp:Date.now()
+            }
         }
         const m = await Message.create(message)
         res.render('contacts/index')
@@ -125,8 +130,8 @@ module.exports.contacts = async (req,res)=>{
 module.exports.messageReply = async (req,res)=>{
     try{
         const thread = {
-            time:Date.now(),
-            response: req.body.response,
+            timestamp:Date.now(),
+            message: req.body.response,
             from:'user',
             status:'unread'
         }
@@ -143,7 +148,7 @@ module.exports.messageReply = async (req,res)=>{
         for (let i = 0; i < message.thread.length; i++) {
             const t = message.thread[i];
             data.thread.push({
-                response:t.response,
+                response:t.message,
                 from:t.from,
                 date:moment(t.time).calendar(),
             })            
