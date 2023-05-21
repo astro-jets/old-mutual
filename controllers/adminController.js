@@ -423,11 +423,13 @@ async function newSubscriptions()
             let user = await User.findById(book.customer);
             let service = await Service.findById(book.service);
             let timeStamp = moment(book.created_on).calendar()
-            arr.push({
-                username:user.username,
-                service:service.name,
-                timestamp:timeStamp
-            })
+            if(user){
+                arr.push({
+                    username:user.username,
+                    service:service.name,
+                    timestamp:timeStamp
+                })
+            }
         }
     }
     return(arr)

@@ -12,7 +12,7 @@
             <div class="chat-box scrollable" style="height: 350px">
                 <!--chat Row -->
                 <ul id="messagesContainer" class="chat-list">
-                    <% if(data.thread){ data.thread.forEach(t=>{ %>
+                    <% if(data && data.thread){ data.thread.forEach(t=>{ %>
                         <% if(t.from=='user' ){%>
                             <!--chat Row -->
                             <li class="odd chat-item col-xl-12">
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-9">
                         <div class="input-field mt-0 mb-0">
-                            <input type="hidden" name="id" value="<%=data.id %>">
+                            <input type="hidden" name="id" value=<%=data.id%> >
                             <textarea id="textarea1" name="response" placeholder="Type and enter"
                                 class="form-control border-0"></textarea>
                         </div>

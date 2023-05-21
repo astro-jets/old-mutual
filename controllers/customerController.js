@@ -61,24 +61,45 @@ module.exports.services= async (req,res)=>{
 module.exports.profile= async (req,res)=>{ 
     try{
         const user = res.locals.user
-        const message = await Message.findOne({user:user._id})
-            
-        const data ={
-            id:message._id,
-            thread:[]
-        } 
-        for (let i = 0; i < message.thread.length; i++) {
-            const t = message.thread[i];
-            data.thread.push({
-                response:t.message,
-                from:t.from,
-                date:moment(t.time).calendar(),
-            })            
+        const sub = []
+        const message = await Message.findOne({user:`${user._id}`})
+        
+        
+        for (let i = 0; i < user.subscriptions.length; i++) {
+            const s = user.subscriptions[i];
+            sub.push({
+                id:s.serviceId,
+                service:s.service,
+                cost:s.cost,
+                date:moment(s.created_on).calendar()
+            })
         }
         
+        if(message){
+            const data ={
+                id:message._id,
+                thread:[]
+            } 
+            for (let i = 0; i < message.thread.length; i++) {
+                const t = message.thread[i];
+                data.thread.push({
+                    response:t.message,
+                    from:t.from,
+                    date:moment(t.time).calendar(),
+                })            
+            }
+            res.render('profile/index',{
+                user: user,
+                sub:sub,
+                data:data,
+                layout:'layouts/noheader'
+            })
+        }
+
         res.render('profile/index',{
             user: user,
-            data:data,
+            data:[],
+            sub:[],
             layout:'layouts/noheader'
         })
     }
@@ -86,6 +107,20 @@ module.exports.profile= async (req,res)=>{
 }
 
 // Book a service
+module.exports.unsubscribeService= async (req,res)=>{    
+    try{
+        await Book.deleteOne({service:req.params.id});
+        const booking = await User.findById(res.locals.user.id);
+        const update = await User.updateOne(
+            {_id:res.locals.user._id},
+            {$pull:{services:{serviceId:req.params.id}}}
+        );        
+        res.redirect('/profile')
+    }
+    catch(err){
+        res.send(err.message)
+    }
+}
 module.exports.bookService= async (req,res)=>{ 
     const bookingDetails = {
         service:req.params.id,
@@ -99,7 +134,12 @@ module.exports.bookService= async (req,res)=>{
         
         if(user){
             const booking = await Book.create(bookingDetails);
-            user.subscriptions.push({service:service.name,cost:service.cost});
+            user.subscriptions.push({
+                serviceId:service._id, 
+                service:service.name, 
+                cost:service.cost,
+                created_on:Date.now()
+            });
             await user.save()
         }
         res.redirect('/profile')
@@ -122,6 +162,38 @@ module.exports.contacts = async (req,res)=>{
         }
         const m = await Message.create(message)
         res.render('contacts/index')
+    }catch(err){
+        res.send(err.message)
+    }
+}
+module.exports.sendMessage = async (req,res)=>{
+    try{
+        const messageDetails = {
+            user:res.locals.user._id,
+            thread:{
+                timestamp:Date.now(),
+                message: req.body.response,
+                from:'user',
+                status:'unread'
+            }
+        }
+        const message = await Message.create(messageDetails)
+        
+        const data ={
+            id:message._id,
+            message:message.message,
+            date: moment(message.date).calendar(),
+            thread:[]
+        }   
+        for (let i = 0; i < message.thread.length; i++) {
+            const t = message.thread[i];
+            data.thread.push({
+                response:t.message,
+                from:t.from,
+                date:moment(t.time).calendar(),
+            })            
+        }
+        res.status(200).json({status:true,message:data});
     }catch(err){
         res.send(err.message)
     }
@@ -153,7 +225,6 @@ module.exports.messageReply = async (req,res)=>{
                 date:moment(t.time).calendar(),
             })            
         }
-        
         res.status(200).json({status:true,message:data});
     }
     catch(err){
@@ -187,7 +258,8 @@ module.exports.signUp = async (req,res)=>{
 }
 // LogIn Route
 module.exports.logIn = async (req,res)=>{
-    const{email,password} = req.body;
+    const email = req.body.email;
+    const password = req.body.password;
     try{
         const user = await User.login(email,password)
         const token = createToken(user._id);
@@ -197,6 +269,7 @@ module.exports.logIn = async (req,res)=>{
     catch(err)
     {
         const errors = handleErrors(err)
+        console.log({errors})
         res.json({errors})
     }
 }

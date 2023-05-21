@@ -1,218 +1,284 @@
-
 <style>
-    
-    .filepond--root {
-        height: 200px !important;
-        width: 200px !important;
-    }
+  .filepond--root {
+    height: 200px !important;
+    width: 200px !important;
+  }
 </style>
 
 <!-- ***** Preloader Start ***** -->
 <div id="preloader">
-    <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+  <div class="jumper">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
 <!-- ***** Preloader End ***** -->
 
 <!-- Header -->
 <div class="sub-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-xs-12">
-                <ul class="left-info">
-                    <li>
-                        <a href="#"><i class="fa fa-clock-o"></i>Mon-Fri 09:00-17:00</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-phone"></i>+265-123-123-123</a>
-                    </li>
-                    <% if(user){ %>
-                        <li>
-                            <a href="/profile">
-                                <i class="fa fa-user"></i>  
-                                <%=user.username%>
-                            </a>
-                        </li>
-                    <%}%>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <ul class="right-icons">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-google"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-xs-12">
+        <ul class="left-info">
+          <li>
+            <a href="#"><i class="fa fa-clock-o"></i>Mon-Fri 09:00-17:00</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-phone"></i>+265-123-123-123</a>
+          </li>
+          <% if(user){ %>
+          <li>
+            <a href="/profile">
+              <i class="fa fa-user"></i>
+              <%=user.username%>
+            </a>
+          </li>
+          <%}%>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="right-icons">
+          <li>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-google"></i></a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 
 <header class="">
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <h2>Old Mutual Limited</h2>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <h2>Old Mutual Limited</h2>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/" id="homeLink"
+              >Home
+              <span class="sr-only">(current)</span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/" id="homeLink">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/services" id="serviceLink">Services</a>
-                    </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/services" id="serviceLink">Services</a>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about" id="aboutLink">About Us</a>
-                    </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about" id="aboutLink">About Us</a>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contacts" id="contactLink">Contact Us</a>
-                    </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contacts" id="contactLink">Contact Us</a>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/faqs" id="faqLink">Faqs</a>
-                    </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/faqs" id="faqLink">Faqs</a>
+          </li>
 
-                    <li class="nav-item">
-                        <% if(user){ %>
-                            <a href='/logout' class="nav-link">Log Out</a>
-                        <% }else{ %>
-                            <a class="nav-link" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop1">Login</a>
-                        <% } %>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          <li class="nav-item">
+            <% if(user){ %>
+            <a href="/logout" class="nav-link">Log Out</a>
+            <% }else{ %>
+            <a
+              class="nav-link"
+              data-mdb-toggle="modal"
+              data-mdb-target="#staticBackdrop1"
+              >Login</a
+            >
+            <% } %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <!-- Modals-->
 
 <!--  loginModal -->
-<div class="modal fade" class="firststyle" id="staticBackdrop1" tabindex="-1" aria-labelledby="exampleModalLabel1"
-    aria-hidden="true">
-    <div class="modal-dialog d-flex justify-content-center">
-        <div class="modal-content w-75">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Sign in</h5>
-                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                <!-- Login form -->
-                <form id="logInForm" action="/login">
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="email" id="email1" name="email" class="form-control" />
-                        <label class="form-label" for="email1">Email address</label>
-                    </div>
+<div
+  class="modal fade"
+  class="firststyle"
+  id="staticBackdrop1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content w-75">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Sign in</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body p-4">
+        <!-- Login form -->
+        <form id="logInForm" action="/login">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="email1" name="email" class="form-control" />
+            <label class="form-label" for="email1">Email address</label>
+          </div>
 
-                    <!-- password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" name="password" id="password1" class="form-control" />
-                        <label class="form-label" for="password1">Password</label>
-                    </div>
+          <!-- password input -->
+          <div class="form-outline mb-4">
+            <input
+              type="password"
+              name="password"
+              id="password1"
+              class="form-control"
+            />
+            <label class="form-label" for="password1">Password</label>
+          </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 0.5cm">
-                        Login
-                    </button>
-                    <span></span>
-                    <a class="create" style="color: rgb(65, 60, 97)" data-mdb-toggle="modal"
-                        data-mdb-target="#staticBackdrop2">Create an account</a>
-                </form>
-                <!-- Login form -->
-            </div>
-        </div>
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            style="margin-bottom: 0.5cm"
+          >
+            Login
+          </button>
+          <span></span>
+          <a
+            class="create"
+            style="color: rgb(65, 60, 97)"
+            data-mdb-toggle="modal"
+            data-mdb-target="#staticBackdrop2"
+            >Create an account</a
+          >
+        </form>
+        <!-- Login form -->
+      </div>
     </div>
+  </div>
 </div>
 <!-- End loginModal -->
 
 <!-- Signup modal -->
-<div class="modal fade" id="staticBackdrop2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-    <div class="modal-dialog d-flex justify-content-center">
-        <div class="modal-content w-75">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Sign up</h5>
-                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-3">
-                <!-- Signup form -->
-                <form id="signUpForm" action="/signUp" method="POST">
-                    <!-- Firstname input -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="name2" name="username" class="form-control" />
-                        <label class="form-label"  for="name2">Name</label>
-                    </div>
+<div
+  class="modal fade"
+  id="staticBackdrop2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content w-75">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Sign up</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body p-3">
+        <!-- Signup form -->
+        <form id="signUpForm" action="/signUp" method="POST">
+          <!-- Firstname input -->
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="name2"
+              name="username"
+              class="form-control"
+            />
+            <label class="form-label" for="name2">Name</label>
+          </div>
 
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="email" id="email2" name="email" class="form-control" />
-                        <label class="form-label" for="email2">Email address</label>
-                    </div>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="email2" name="email" class="form-control" />
+            <label class="form-label" for="email2">Email address</label>
+          </div>
 
-                    <!-- Phone number input -->
-                    <div class="form-outline mb-4">
-                        <input type="tel" id="phone" name="phone" class="form-control" />
-                        <label class="form-label" for="name2">Phone number</label>
-                    </div>
+          <!-- Phone number input -->
+          <div class="form-outline mb-4">
+            <input type="tel" id="phone" name="phone" class="form-control" />
+            <label class="form-label" for="name2">Phone number</label>
+          </div>
 
-                    <!-- Phone number input -->
-                    <div class="form-outline mb-4">
-                        <p class="form-label">Upload your profile</p>
-                        <input type="file" id="avatar" name="avatar" class="filepond" />
-                    </div>
+          <!-- Phone number input -->
+          <div class="form-outline mb-4">
+            <p class="form-label">Upload your profile</p>
+            <input type="file" id="avatar" name="avatar" class="filepond" />
+          </div>
 
-                    <!-- password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="password2" name="password" class="form-control" />
-                        <label class="form-label" for="password2">Password</label>
-                    </div>
+          <!-- password input -->
+          <div class="form-outline mb-4">
+            <input
+              type="password"
+              id="password2"
+              name="password"
+              class="form-control"
+            />
+            <label class="form-label" for="password2">Password</label>
+          </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block" 
-                    style="margin-bottom: 0.5cm" data-mdb-toggle="modal"
-                        data-mdb-target="#myModal">Sign Up</button>
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            style="margin-bottom: 0.5cm"
+            data-mdb-toggle="modal"
+            data-mdb-target="#myModal"
+          >
+            Sign Up
+          </button>
 
-                    <a class="create" style="color: rgb(65, 60, 97)" data-mdb-toggle="modal"
-                        data-mdb-target="#staticBackdrop1">Alredy have an account?</a>
-                </form>
-                <!-- Signup form -->
-            </div>
-        </div>
+          <a
+            class="create"
+            style="color: rgb(65, 60, 97)"
+            data-mdb-toggle="modal"
+            data-mdb-target="#staticBackdrop1"
+            >Alredy have an account?</a
+          >
+        </form>
+        <!-- Signup form -->
+      </div>
     </div>
+  </div>
 </div>
 <!-- End signupModal -->
 
 <!--SuccessModal -->
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-confirm">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center"></div>
-            <div id="myModalContainer" class="modal-body text-center">
-                
-            </div>
-        </div>
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center"></div>
+      <div id="myModalContainer" class="modal-body text-center"></div>
     </div>
+  </div>
 </div>
 <!--EndSuccessModal-->
 

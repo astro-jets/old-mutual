@@ -70,6 +70,31 @@ const isAdmin = (req,res,next)=>{
     }
 }
 
+const isCustomer = (req,res,next)=>{
+    const token = req.cookies.jwt;
+    if(token){
+        
+        jwt.verify(token,process.env.TOKEN_SECRET,async (err,decodedToken)=>{
+            if(err){
+                res.locals.user = null;
+                next()
+            }else{
+                let user = await User.findById(decodedToken.id)
+                res.locals.user = user;
+                if(user)
+                {
+                    if(user.userType === "admin")
+                    {
+                        res.render("404",{layout:"layouts/errors"})
+                    }
+                }
+                else{res.cookie('jwt','',{httpOnly:true,maxAge:1})}
+                next()
+            }
+        })
+    }else{res.locals.user = null;next();}
+}
+
 async function makeNotifictaions(){
     const arr = []
     const messages = await Message.find()
@@ -89,4 +114,4 @@ async function makeNotifictaions(){
     }
     return(arr);
 }
-module.exports = {requireAuth,currentUser,isAdmin}
+module.exports = {requireAuth,currentUser,isAdmin,isCustomer}
