@@ -339,9 +339,7 @@ module.exports.signUpPost = async (req,res)=>{
         const user = await User.create(userDetails)
         const token = createToken(user._id);
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000})
-        res.render('admin/dashboard',{
-            layout:'layouts/adminLayout'
-        })
+        res.redirect('/admin/')
     }
     catch(err)
     {
