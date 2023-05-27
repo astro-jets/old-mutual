@@ -1,73 +1,97 @@
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Subscriptions</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Subscriptions</li>
-            </ol>
-        </nav>
-    </div>
-    <section class="section">
-        <div class="row">
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Subscriptions list</h6>
-                            <table class="table table-bordered table table table-hover mb-0">
-                                <tr>
-                                    <th scope="col" rowspan="2" style="vertical-align: middle">
-                                        Customer name
-                                    </th>
-                                    <th scope="col" colspan="4" style="text-align: center">
-                                        Services subscribed
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Savings</th>
-                                    <th>Loans</th>
-                                    <th>Funeral Cover</th>
-                                    <th>Life Cover</th>
-                                </tr>
-                                <% customers.forEach(customer => { %>
-                                    <tr>
-                                        <td><%=customer.username %></td>
-                                        <td>
-                                            <% if(customer.subscriptions.includes('Savings')){%>
-                                                <i class="bi bi-check-circle text success" aria-hidden="true"></i>
-                                            <% } else{%>
-                                                <i class="bi bi-x-circle text danger" aria-hidden="true"></i>
-                                            <% } %>
-                                        </td>
-                                        <td>
-                                            <% if(customer.subscriptions.includes('Loans')){%>
-                                                <i class="bi bi-check-circle text success" aria-hidden="true"></i>
-                                            <% } else{%>
-                                                <i class="bi bi-x-circle text danger" aria-hidden="true"></i>
-                                            <% } %>
-                                        </td>
-                                        <td>
-                                            <% if(customer.subscriptions.includes('Funeral Cover')){%>
-                                                <i class="bi bi-check-circle text success" aria-hidden="true"></i>
-                                            <% } else{%>
-                                                <i class="bi bi-x-circle text danger" aria-hidden="true"></i>
-                                            <% } %>
-                                        </td>
-                                        <td>
-                                            <% if(customer.subscriptions.includes('Life Cover')){%>
-                                                <i class="bi bi-check-circle text success" aria-hidden="true"></i>
-                                            <% } else{%>
-                                                <i class="bi bi-x-circle text danger" aria-hidden="true"></i>
-                                            <% } %>
-                                        </td>
-                                    </tr>
-                                <% }); %>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+  <div class="pagetitle">
+    <h1>Subscriptions</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+        <li class="breadcrumb-item active">Subscriptions</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+              <h6 class="mb-4">Subscriptions list</h6>
+              <table class="table table-bordered table table table-hover mb-0">
+                <tr>
+                  <th scope="col" rowspan="2" style="vertical-align: middle">
+                    Customer name
+                  </th>
+                  <th scope="col" colspan="4" style="text-align: center">
+                    Services subscribed
+                  </th>
+                </tr>
+                <tr>
+                  <th>Savings</th>
+                  <th>Loans</th>
+                  <th>Funeral Cover</th>
+                  <th>Life Cover</th>
+                </tr>
+                <% customers.forEach(customer => { %>
+                <tr>
+                  <td><%=customer.username %></td>
+                  <td>
+                    <% if(customer.subscriptions.includes('Savings')){%>
+                    <i
+                      class="bi bi-check-circle text success"
+                      aria-hidden="true"
+                    ></i>
+                    <% } else{%>
+                    <i
+                      class="bi bi-x-circle text danger"
+                      aria-hidden="true"
+                    ></i>
+                    <% } %>
+                  </td>
+                  <td>
+                    <% if(customer.subscriptions.includes('Loans')){%>
+                    <i
+                      class="bi bi-check-circle text success"
+                      aria-hidden="true"
+                    ></i>
+                    <% } else{%>
+                    <i
+                      class="bi bi-x-circle text danger"
+                      aria-hidden="true"
+                    ></i>
+                    <% } %>
+                  </td>
+                  <td>
+                    <% if(customer.subscriptions.includes('Funeral Cover')){%>
+                    <i
+                      class="bi bi-check-circle text success"
+                      aria-hidden="true"
+                    ></i>
+                    <% } else{%>
+                    <i
+                      class="bi bi-x-circle text danger"
+                      aria-hidden="true"
+                    ></i>
+                    <% } %>
+                  </td>
+                  <td>
+                    <% if(customer.subscriptions.includes('Life Cover')){%>
+                    <i
+                      class="bi bi-check-circle text success"
+                      aria-hidden="true"
+                    ></i>
+                    <% } else{%>
+                    <i
+                      class="bi bi-x-circle text danger"
+                      aria-hidden="true"
+                    ></i>
+                    <% } %>
+                  </td>
+                </tr>
+                <% }); %>
+              </table>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>

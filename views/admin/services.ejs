@@ -1,115 +1,163 @@
 <link href="../../assets/admin/css/grid.min.css" rel="stylesheet" />
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Services</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Services</li>
-            </ol>
-        </nav>
-    </div>
-    <section class="section">
-        
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body pt-3">
-                        <ul class="nav nav-tabs nav-tabs-bordered">
-                            <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#available-services">
-                                    Available Services
-                                </button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#new-services">
-                                    Create new
-                                </button>
-                            </li>
-                        </ul>
-                        <div class="tab-content pt-2">
-                            <div class="tab-pane fade show active available-services" id="available-services">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Available Services</h5>
+  <div class="pagetitle">
+    <h1>Services</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+        <li class="breadcrumb-item active">Services</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <ul class="nav nav-tabs nav-tabs-bordered">
+              <li class="nav-item">
+                <button
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  data-bs-target="#available-services"
+                >
+                  Available Services
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#new-services"
+                >
+                  Create new
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div
+                class="tab-pane fade show active available-services"
+                id="available-services"
+              >
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card-body">
+                      <h5 class="card-title">Available Services</h5>
 
-                                            <div class="row el-element-overlay">
-                                                <% services.forEach(s => {%>
-                                                   <div class="col-lg-4 col-md-6">
-                                                        <div class="card">
-                                                            <div class="el-card-item">
-                                                                <div class="el-card-avatar el-overlay-1">
-                                                                    <img src="<%=s.thumbnailPath%>" alt="user" />
-                                                                    <div class="el-overlay">
-                                                                        <ul class="list-style-none el-info">
-                                                                            <li class="el-item">
-                                                                                <a href="#" class=" btn default btn-outline image-popup-vertical-fit el-link">
-                                                                                    <i class="bi bi-pencil"></i>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="el-item">
-                                                                                <a class="btn default btn-outline el-link" href="#">
-                                                                                    <i class="bi bi-trash"></i>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="el-card-content">
-                                                                    <h4 class="mb-0"><%=s.name%></h4>
-                                                                    <span class="text-muted">Mk <%=s.cost%>/month.</span>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <% }); %>
-                                            </div>
-                                        </div>
-                                    </div>
+                      <div class="row el-element-overlay">
+                        <% services.forEach(s => {%>
+                        <div class="col-lg-4 col-md-6">
+                          <div class="card">
+                            <div class="el-card-item">
+                              <div class="el-card-avatar el-overlay-1">
+                                <img src="<%=s.thumbnailPath%>" alt="user" />
+                                <div class="el-overlay">
+                                  <ul class="list-style-none el-info">
+                                    <li class="el-item">
+                                      <a
+                                        href="#"
+                                        class="btn default btn-outline image-popup-vertical-fit el-link"
+                                      >
+                                        <i class="bi bi-pencil"></i>
+                                      </a>
+                                    </li>
+                                    <li class="el-item">
+                                      <a
+                                        class="btn default btn-outline el-link"
+                                        href="#"
+                                      >
+                                        <i class="bi bi-trash"></i>
+                                      </a>
+                                    </li>
+                                  </ul>
                                 </div>
+                              </div>
+                              <div class="el-card-content">
+                                <h4 class="mb-0"><%=s.name%></h4>
+                                <span class="text-muted"
+                                  >Mk <%=s.cost%>/month.</span
+                                >
+                              </div>
                             </div>
-                            <div class="tab-pane fade show  new-services" id="new-services">
-                                <div class="card-body">
-                                    <h5 class="card-title">Add New Service</h5>
-                                    <form class="row g-3" method="post" action="/admin/services">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label for="inputNanme4" class="form-label">Service Name</label>
-                                                <input type="text" class="form-control" name="name" id="inputNanme4" />
-                                            </div>
-                                            <div class="col-6">
-                                                <label for="inputNanme4" class="form-label">Service Cost</label>
-                                                <input type="number" class="form-control" name="cost" id="inputNanme4" />
-                                            </div>
-                                        </div>
-                            
-                                        <div class="row">
-                                            <div class="col-6 g-3">
-                                                <label for="inputNanme4" class="form-label">Service Thumbnail</label>
-                                                <input type="file" name="avatar" class="form-control filepond">
-                                            </div>
-                                            <div class="col-6 my-3">
-                                                <label for="inputNanme4" class="form-label">Description</label>
-                            
-                                                <textarea name="description" id="" cols="30" rows="10" class="form-control">
-                                                                </textarea>
-                                            </div>
-                                        </div>
-                            
-                                        <div class="col-4">
-                                            <button type="submit" class="btn btn-primary btn-lg col-12">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                          </div>
                         </div>
+                        <% }); %>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <div class="tab-pane fade show new-services" id="new-services">
+                <div class="card-body">
+                  <h5 class="card-title">Add New Service</h5>
+                  <form class="row g-3" method="post" action="/admin/services">
+                    <div class="row">
+                      <div class="col-6">
+                        <label for="inputNanme4" class="form-label"
+                          >Service Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="name"
+                          id="inputNanme4"
+                        />
+                      </div>
+                      <div class="col-6">
+                        <label for="inputNanme4" class="form-label"
+                          >Service Cost</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="cost"
+                          id="inputNanme4"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6 g-3">
+                        <label for="inputNanme4" class="form-label"
+                          >Service Thumbnail</label
+                        >
+                        <input
+                          type="file"
+                          name="avatar"
+                          class="form-control filepond"
+                        />
+                      </div>
+                      <div class="col-6 my-3">
+                        <label for="inputNanme4" class="form-label"
+                          >Description</label
+                        >
+
+                        <textarea
+                          name="description"
+                          id=""
+                          cols="30"
+                          rows="10"
+                          class="form-control"
+                        >
+                        </textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg col-12"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>

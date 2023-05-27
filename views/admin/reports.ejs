@@ -1,39 +1,37 @@
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Reports</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Reports</li>
-            </ol>
-        </nav>
-    </div>
-    <section class="section">        
-        <div class="row">
-            <div class="card col-4 py-2 px-2 rounded">
-                <h4 class="mb-2 mt-2 col-12 text-center">Subscriptions this month</h4>
+  <div class="pagetitle">
+    <h1>Reports</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+        <li class="breadcrumb-item active">Reports</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="card col-4 py-2 px-2 rounded">
+        <h4 class="mb-2 mt-2 col-12 text-center">Subscriptions this month</h4>
 
-                <div class="col-12">
-                    <canvas id="myPieChart"></canvas>
-                </div>
-            </div>
-            <div class="col-1"></div>
-            <div class="container card col-7 py-2 px-2 rounded">
-                <h4 class="mb-2 mt-2 col-12 text-center">All time subscriptions</h4>        
-                <div class="card-body col-12">
-                    <canvas id="myBarChart"></canvas>
-                </div>
-            </div>
+        <div class="col-12">
+          <canvas id="myPieChart"></canvas>
         </div>
-        <div class="row">
-            <div class="container col-lg-12">
-                <h4 class="col-12 text-center">
-                    Anum Statistic
-                </h4>
-                <div class="col-12 card">
-                    <canvas id="myAreaChart"></canvas>
-                </div>
-            </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="container card col-7 py-2 px-2 rounded">
+        <h4 class="mb-2 mt-2 col-12 text-center">All time subscriptions</h4>
+        <div class="card-body col-12">
+          <canvas id="myBarChart"></canvas>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container col-lg-12">
+        <h4 class="col-12 text-center">Anum Statistic</h4>
+        <div class="col-12 card">
+          <canvas id="myAreaChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
